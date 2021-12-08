@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Nimap_pro.Models.Product>
+
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+<h1>ProductList</h1>
+
+<p class="float-right">
+    <a asp-action="Create" class="btn btn-outline-primary">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Create", new {  id=item.ProductID, item.ProductName, item.CategoryID,item.CategoryName },new { @class = "btn btn-success" }) |
+              
+                @Html.ActionLink("Delete", "DeletePro", new {  id=item.ProductID }, new { @class = "btn btn-danger",onclick="return Confirm('Do You Realy Want This Reacord?')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
